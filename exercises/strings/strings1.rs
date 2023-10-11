@@ -5,7 +5,6 @@
 // Execute `rustlings hint strings1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 fn main() {
     let answer = current_favorite_color();
@@ -13,5 +12,5 @@ fn main() {
 }
 
 fn current_favorite_color() -> String {
-    "blue"
+    "blue".to_string() //字符串字面值需要to_string方法转换为rust的String类型
 }
