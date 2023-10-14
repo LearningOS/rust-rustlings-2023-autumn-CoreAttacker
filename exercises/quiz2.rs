@@ -20,7 +20,7 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
+
 
 pub enum Command {
     Uppercase,
@@ -31,12 +31,20 @@ pub enum Command {
 mod my_module {
     use super::Command;
 
+
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(&str, Command)>) -> Vec<String> { //输入是&str
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+        let mut output: Vec<String> = vec![]; //输出是String
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
+            let mut s = string.to_string(); //创建的是String，由输入的&str转换而来
+            match command {
+                Command::Uppercase => {s = string.to_uppercase();},
+                Command::Trim => {s = string.trim().to_string();},
+                Command::Append(number) => {for _ in 0..*number {s.push_str("bar");}},
+            }
+            output.push(s);
         }
         output
     }
@@ -45,12 +53,12 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]
     fn it_works() {
-        let output = transformer(vec![
+        let output = transformer(vec![ //传入键值对数组
             ("hello".into(), Command::Uppercase),
             (" all roads lead to rome! ".into(), Command::Trim),
             ("foo".into(), Command::Append(1)),
@@ -59,6 +67,6 @@ mod tests {
         assert_eq!(output[0], "HELLO");
         assert_eq!(output[1], "all roads lead to rome!");
         assert_eq!(output[2], "foobar");
-        assert_eq!(output[3], "barbarbarbarbarbar");
+        assert_eq!(output[3], "barbarbarbarbarbar"); //返回字符串数组
     }
 }
