@@ -19,7 +19,7 @@ fn main() {
     let string1 = String::from("long string is long");
     let result;
     {
-        let string2 = "xyz";
+        let string2 = "xyz"; //字符串字面量&str的生命周期默认是静态的
         result = longest(string1.as_str(), string2);
     }
     println!("The longest string is '{}'", result);
