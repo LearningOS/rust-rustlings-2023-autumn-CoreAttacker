@@ -18,11 +18,10 @@
 //
 // Execute `rustlings hint box1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
 
 #[derive(PartialEq, Debug)]
-pub enum List {
-    Cons(i32, List),
+pub enum List { //递归类型
+    Cons(i32, Box<List>), //和链表一样的思路，用指针指向下一个自己，否则编译器不知如何开辟内存
     Nil,
 }
 
@@ -33,13 +32,15 @@ fn main() {
         create_non_empty_list()
     );
 }
+use crate::List::{Nil, Cons};
 
 pub fn create_empty_list() -> List {
-    todo!()
+    List::Nil
 }
 
 pub fn create_non_empty_list() -> List {
-    todo!()
+    let l = Cons(1, Box::new(Nil));
+    l
 }
 
 #[cfg(test)]
