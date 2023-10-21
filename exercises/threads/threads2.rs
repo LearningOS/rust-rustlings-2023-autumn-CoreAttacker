@@ -14,7 +14,7 @@ use std::time::Duration;
 struct JobStatus {
     jobs_completed: u32,
 }
-
+use std::sync::Mutex;
 fn main() {
     let status = Arc::new(Mutex::new(JobStatus { jobs_completed: 0 }));  //指向一个上了互斥锁的公共变量
     let mut handles = vec![];
